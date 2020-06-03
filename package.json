@@ -19,7 +19,10 @@
     "url": "https://github.com/pink-gorilla/gorilla-plot/issues"
   },
   "homepage": "https://github.com/pink-gorilla/gorilla-plot#readme",
-  "dependencies": {},
+  "dependencies": {
+    "react": "16.13.0",
+    "react-dom": "16.13.0"
+  },
   "devDependencies": {
     "cross-env": "^6.0.3",
     "karma": "^4.4.1",

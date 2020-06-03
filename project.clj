@@ -29,11 +29,13 @@
 
   :pinkgorilla {:runtime-config "./notebooks/config.edn"}
 
-  :profiles {:ci  {:target    :karma
-                   :output-to "target/ci.js"}
+  :profiles {:ci  {:source-paths ["dev"]}
 
              :perf {:source-paths ["dev"]
-                    :dependencies [[metasoarous/darkstar "0.1.0"]
+                    :dependencies [[thheller/shadow-cljs "2.8.80"]
+                                   [thheller/shadow-cljsjs "0.0.21"]
+                                    [reagent "0.10.0"]
+                                   [metasoarous/darkstar "0.1.0"]
                                    [cheshire "5.10.0"]
                                    [com.taoensso/tufte "2.1.0"]]}
 
@@ -74,6 +76,9 @@
 
             "test-js"          ^{:doc "Compile & Run JavaScript."}
             ["do" "build-shadow-ci" ["test-run"]]
+
+            "build-shadow-perf" ^{:doc "Build shadow-cljs perf js bundle"}
+            ["with-profile" "perf" "run" "-m" "shadow.cljs.devtools.cli" "compile" ":perf"]
 
             "perf"              ^{:doc "performance tests"}
             ["with-profile" "perf" "run" "-m" "perf.core"]})

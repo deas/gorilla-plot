@@ -1,4 +1,17 @@
 {:lein {:profile "+ci"}
  :nrepl  {:port 8703}
  :builds {:ci   {:target    :karma
-                 :output-to "target/ci.js"}}}
+                 :output-to "target/ci.js"}
+          :perf {:target  :browser
+                 :output-dir "target"
+                 :main perf.render/render-page
+                 :output-to "target/perf.js"
+                 :asset-path "/"
+                 :modules    {:main {:entries [perf.render]}}
+                 :js-options       {:minimize-require false}
+                 :compiler-options {
+                                     :optimizations :advanced
+                                    ;:optimizations :none
+                                    }
+                 }}}
+
